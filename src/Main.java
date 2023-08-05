@@ -4,7 +4,7 @@ public class Main {
 
         Scraping scraping = new Scraping(lendoNick());
     }
-    public String lendoNick(){
+    public static String lendoNick(){
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
