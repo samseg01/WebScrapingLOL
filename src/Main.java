@@ -1,25 +1,22 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-<<<<<<< HEAD
+        System.out.print("Digite um nick: ");
         Scraping scraping = new Scraping(lendoNick());
+
+        while (scraping.printElo().equals("")){
+            System.out.println("Jogador inexistente, verifique a ortografia e tente novamente:");
+            scraping.getNewNick(lendoNick());
+        }
+
+        System.out.println(scraping.printElo());
+        System.out.println(scraping.printLevel());
+        System.out.println(scraping.printMaestria());
+
     }
     public static String lendoNick(){
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
-=======
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
->>>>>>> parent of 375da58... Adicionado leitura do nick pela classe Scanner
     }
 }
