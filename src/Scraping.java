@@ -4,7 +4,7 @@ import org.jsoup.nodes.Document;
 
 public class Scraping {
     Document doc;
-     String nickName;
+    String nickName="";
     static final String linkOpGG = "https://www.op.gg/summoners/br/";
     static final String linkMaestria = "https://championmastery.gg/summoner?summoner=";
 
@@ -57,7 +57,8 @@ public class Scraping {
     }
 
     public String printElo() {
-        String classeRankedSolo = "css-1kw4425 e1h9n1vr0";
+//        String classeRankedSolo = "css-1kw4425 e1h9n1vr0";
+        String classeRankedSolo = "css-1kw4425 elodsbv0";
         this.getHTML(linkOpGG, "dados");
         String saida = "";
         if (this.doc.getElementsByClass(classeRankedSolo).text().contains("Unranked")) {
