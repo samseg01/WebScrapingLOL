@@ -4,13 +4,18 @@ import org.jsoup.nodes.Document;
 
 public class Scraping {
     Document doc;
-    static String nickName = "";
-    public static final String linkOpGG = "https://www.op.gg/summoners/br/";
-    public static final String linkMaestria = "https://championmastery.gg/summoner?summoner=";
+     String nickName;
+    static final String linkOpGG = "https://www.op.gg/summoners/br/";
+    static final String linkMaestria = "https://championmastery.gg/summoner?summoner=";
 
     public Scraping(String nickName) {
-        Scraping.nickName = nickName;
+        this.nickName = nickName;
     }
+
+    public void getNewNick(String novoNick){
+        this.nickName = novoNick;
+    }
+
 
     private void getHTML(String link, String info) {
         try {
@@ -20,11 +25,11 @@ public class Scraping {
         }
     }
 
-    private static String trocaExecCaracteres(String info) {
+    private String trocaExecCaracteres(String info) {
         String nick = nickName;
-        String spaceCaracOpGG = "%20";
-        String spaceCaracMaestria = "+";
-        String addRegion = "&region=BR";
+        //spaceCaracOpGG = "%20";
+        //spaceCaracMaestria = "+";
+        //addRegion = "&region=BR";
         String space = "";
         if (info.equals("dados")) {
             space = "%20";
@@ -53,19 +58,19 @@ public class Scraping {
 
     public String printElo() {
         String classeRankedSolo = "css-1kw4425 e1h9n1vr0";
-        this.getHTML("https://www.op.gg/summoners/br/", "dados");
+        this.getHTML(linkOpGG, "dados");
         String saida = "";
-        if (this.doc.getElementsByClass("css-1kw4425 e1h9n1vr0").text().contains("Unranked")) {
+        if (this.doc.getElementsByClass(classeRankedSolo).text().contains("Unranked")) {
             saida = "Ranked Solo: Unranked";
         } else {
-            saida = this.doc.getElementsByClass("css-1kw4425 e1h9n1vr0").text();
+            saida = this.doc.getElementsByClass(classeRankedSolo).text();
         }
 
         return saida;
     }
 
     public String printLevel() {
-        this.getHTML("https://www.op.gg/summoners/br/", "dados");
+        this.getHTML(linkOpGG, "dados");
         String saida = this.doc.getElementsByClass("level").text();
         String Saida = "";
         int contSpace = 0;
@@ -89,7 +94,7 @@ public class Scraping {
     }
 
     public String printMaestria() {
-        this.getHTML("https://championmastery.gg/summoner?summoner=", "maestria");
+        this.getHTML(linkMaestria, "maestria");
         String saida = "";
         saida = this.doc.getElementsByClass("internallink").text();
         String Saida = "";
